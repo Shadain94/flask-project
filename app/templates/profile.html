@@ -6,7 +6,16 @@
 
 <p> Fill out this form to create a profile</p>
 
-<form method="POST" action="/profile">
+<form method="POST" action="/profile"  enctype="multipart/form-data">
+    
+  <div class="form-group">
+    <label for="file">Upload your Photo</label>
+    <small class="form-text text-muted" id="pic">&nbsp (Required)</small>
+    <p><small  class="form-text text-muted">Please upload a nice photo of yourself here.</small></p>
+    <input type="file" name="file" class="form-control" style="width: 300px" id="photo_field" name="photo" />
+  </div>
+    
+    
   <div class="form-group">
     <label for="exampleInputEmail1"> First Name</label>
     <small class="form-text text-muted" id="first">&nbsp (Required)</small>
@@ -21,11 +30,30 @@
     <input type="text" class="form-control" id="lastname_field" style="width: 300px" name="l_name">
   </div>
   
+  
+  <div class="form-group">
+    <label for="email_field"> Username</label>
+    <small class="form-text text-muted" id="user">&nbsp (Required)</small>
+    <p><small  class="form-text text-muted">Please enter your username</small></p>
+    <input type="text" class="form-control" id="username_field" style="width: 300px" name="u_name">
+  </div>
+  
   <div class="form-group">
     <label for="email_field">Age</label>
     <small class="form-text text-muted" id="third">&nbsp (Required)</small>
     <p><small  class="form-text text-muted">Let's have your age</small></p>
     <input type="text" class="form-control" id="age_field" style="width: 300px" name="age">
+  </div>
+  
+  <div class="form-group">
+    <label for="email_field">Gender</label>
+    <small class="form-text text-muted" id="gender">&nbsp (Required)</small>
+    <p><small  class="form-text text-muted">Please choose your gender</small></p>
+    <select>
+  <option value="Male">Male</option>
+  <option value="Female">Female</option>
+  <option value="empty" selected> Empty</option>
+    </select>
   </div>
   
   <div class="form-group">

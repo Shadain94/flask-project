@@ -2,7 +2,7 @@ body {
     padding-top: 50px;
 }
 
-#first,#second,#third,#forth{
+#first,#second,#third,#forth,#gender,#user,#pic{
     
     color: red;
     font-family: cursive;

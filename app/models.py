@@ -1,13 +1,16 @@
 from . import db
 
+
+
 class UserProfile(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(80))
     last_name = db.Column(db.String(80))
     gender=db.Column(db.String(10))
     username=db.Column(db.String(12))
-    age = db.Column(db.Integer())
+    age = db.Column(db.String(10))
     biography=db.Column(db.String(255))
+    created_on=db.Column(db.DATE)
 
     def is_authenticated(self):
         return True

@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "keep me safe"
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://user:password@localhost/database"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://shadain:madmaths1@localhost/profiles"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True # added just to suppress a warning
 
 db = SQLAlchemy(app)
