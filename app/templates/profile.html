@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block main %}
+<h1>Profile Form</h1>
+<hr id="margin">
+
+<p> Fill out this form to create a profile</p>
+
+<form method="POST" action="/profile">
+  <div class="form-group">
+    <label for="exampleInputEmail1"> First Name</label>
+    <small class="form-text text-muted" id="first">&nbsp (Required)</small>
+    <p><small  class="form-text text-muted">Please enter your first name.</small></p>
+    <input type="text" class="form-control" id="firstname_field" style="width: 300px" name="f_name" >
+  </div>
+  
+  <div class="form-group">
+    <label for="email_field">Last Name</label>
+    <small class="form-text text-muted" id="second">&nbsp (Required)</small>
+    <p><small  class="form-text text-muted">Please enter your last name</small></p>
+    <input type="text" class="form-control" id="lastname_field" style="width: 300px" name="l_name">
+  </div>
+  
+  <div class="form-group">
+    <label for="email_field">Age</label>
+    <small class="form-text text-muted" id="third">&nbsp (Required)</small>
+    <p><small  class="form-text text-muted">Let's have your age</small></p>
+    <input type="text" class="form-control" id="age_field" style="width: 300px" name="age">
+  </div>
+  
+  <div class="form-group">
+    <label for="message_field">Biography</label>
+    <small class="form-text text-muted" id="forth">&nbsp (Required)</small>
+    <p><small  class="form-text text-muted">Please enter a short biography here</small></p>
+    <textarea class="form-control" id="bio_field" rows="3" style="width: 500px" name="biography" ></textarea>
+  </div>
+  
+  
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+{% endblock %}

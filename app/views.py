@@ -21,10 +21,10 @@ def home():
     """Render website's home page."""
     return render_template('home.html')
 
-@app.route('/about/')
-def about():
+@app.route('/profile')
+def profile():
     """Render the website's about page."""
-    return render_template('about.html')
+    return render_template('profile.html')
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
