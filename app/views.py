@@ -12,6 +12,7 @@ from forms import LoginForm
 from models import UserProfile
 import time 
 from datetime import date
+import random
 
 
 ###
@@ -31,12 +32,13 @@ def profile():
         firstname= request.form['f_name']
         lastname= request.form['l_name']
         username= request.form['u_name']
+        userid= "6200"+str(random.randint(1,400))
         age= request.form['age']
         bio= request.form['biography']
         gender=request.form['gender_types']
         now=date.today()
         
-        user= UserProfile(first_name=firstname, last_name=lastname, username=username, age=age, biography=bio, created_on= now.strftime('%d, %m , %Y'), gender=gender)
+        user= UserProfile(userid=userid,first_name=firstname, last_name=lastname, username=username, age=age, biography=bio, created_on= now.strftime('%d, %m , %Y'), gender=gender)
         db.session.add(user)
         db.session.commit()
 
