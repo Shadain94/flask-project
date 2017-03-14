@@ -10,6 +10,8 @@ from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user, current_user, login_required
 from forms import LoginForm
 from models import UserProfile
+import time 
+from datetime import date
 
 
 ###
@@ -21,9 +23,24 @@ def home():
     """Render website's home page."""
     return render_template('home.html')
 
-@app.route('/profile')
+@app.route('/profile', methods=[ "GET", "POST"])
 def profile():
+    
     """Render the website's about page."""
+    if request.method == 'POST':
+        firstname= request.form['f_name']
+        lastname= request.form['l_name']
+        username= request.form['u_name']
+        age= request.form['age']
+        bio= request.form['biography']
+        gender=request.form['gender_types']
+        now=date.today()
+        
+        user= UserProfile(first_name=firstname, last_name=lastname, username=username, age=age, biography=bio, created_on= now.strftime('%d, %m , %Y'), gender=gender)
+        db.session.add(user)
+        db.session.commit()
+
+    
     return render_template('profile.html')
 
 @app.route("/login", methods=["GET", "POST"])
