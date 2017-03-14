@@ -17,6 +17,7 @@ from werkzeug.utils import secure_filename
 import os
 
 
+
 ###
 # Routing for your application.
 ###
@@ -55,16 +56,26 @@ def profile():
 
 @app.route("/profiles", methods=["GET", "POST"])
 def profiles():
-    if request.method == "POST":
-        print(str("hey"))
+    if request.method == "GET":
+        ppl_info= UserProfile.query.all()
         
-    return render_template("profiles.html")
+        
+        
+    return render_template("profiles.html", person= ppl_info)
+    
+@app.route("/profile/<userid>", methods=["GET","POST"])
+def specific_profile(userid):
+    if request.method=="GET":
+        single_user=[]
+        single_user = [UserProfile.query.filter_by(userid=userid).first_or_404()]
+        
+        
+        
+    return render_template('show_user.html', single_person=single_user)
+        
+        
 
-# user_loader callback. This callback is used to reload the user object from
-# the user ID stored in the session
-@login_manager.user_loader
-def load_user(id):
-    return UserProfile.query.get(int(id))
+
 
 ###
 # The functions below should be applicable to all Flask apps.
