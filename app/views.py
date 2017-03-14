@@ -6,13 +6,15 @@ This file creates your application.
 """
 
 from app import app, db, login_manager
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash,jsonify
 from flask_login import login_user, logout_user, current_user, login_required
 from forms import LoginForm
 from models import UserProfile
 import time 
 from datetime import date
 import random
+from werkzeug.utils import secure_filename
+import os
 
 
 ###
@@ -29,7 +31,11 @@ def profile():
     
     """Render the website's about page."""
     if request.method == 'POST':
+        file_folder = app.config['UPLOAD_FOLDER']
         firstname= request.form['f_name']
+        image=request.files['file']
+        filename = secure_filename(image.filename)
+        image.save(os.path.join(file_folder, filename))
         lastname= request.form['l_name']
         username= request.form['u_name']
         userid= "6200"+str(random.randint(1,400))
@@ -41,30 +47,18 @@ def profile():
         user= UserProfile(userid=userid,first_name=firstname, last_name=lastname, username=username, age=age, biography=bio, created_on= now.strftime('%d, %m , %Y'), gender=gender)
         db.session.add(user)
         db.session.commit()
+        flash('Your information has been saved to the Database')
+        return redirect(url_for('home'))
 
     
     return render_template('profile.html')
 
-@app.route("/login", methods=["GET", "POST"])
-def login():
-    form = LoginForm()
+@app.route("/profiles", methods=["GET", "POST"])
+def profiles():
     if request.method == "POST":
-        # change this to actually validate the entire form submission
-        # and not just one field
-        if form.username.data:
-            # Get the username and password values from the form.
-
-            # using your model, query database for a user based on the username
-            # and password submitted
-            # store the result of that query to a `user` variable so it can be
-            # passed to the login_user() method.
-
-            # get user id, load into session
-            login_user(user)
-
-            # remember to flash a message to the user
-            return redirect(url_for("home")) # they should be redirected to a secure-page route instead
-    return render_template("login.html", form=form)
+        print(str("hey"))
+        
+    return render_template("profiles.html")
 
 # user_loader callback. This callback is used to reload the user object from
 # the user ID stored in the session
