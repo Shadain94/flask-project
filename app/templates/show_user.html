@@ -1,11 +1,33 @@
 {% extends "base.html" %}
 
 {% block main %}
-<h1>Single User</h1>
+<h1 id=head>Single Profile</h1>
 
 {% for i in single_person %}
-
-<li> {{i}}</li>
+ <div id="individual">
+     <div id=picframe>
+      <img src="{{url_for('static', filename='profile_pictures/'+single_image)}}" />
+     
+     </div>
+  <div id="inner">
+      
+ <h2><b>{{i.first_name}}&nbsp{{i.last_name}}</b></h2>
+ <p><b>Profile Created On:</b> {{i.created_on}} 
+   <br>
+    <b>Username:</b> {{i.username}}
+    <br> 
+    <b>UserId:</b> {{i.userid}}
+    <br>
+    <b>Gender:</b> {{i.gender}}
+    <br>
+    <b> Age: </b>{{i.age}}
+    <br>
+    <br>
+   <b> Biography:</b> {{i.biography}}
+    
+ </p>
+ </div>
+ <div>
 
 {% endfor %}
 

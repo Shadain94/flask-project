@@ -11,3 +11,26 @@ body {
     
     
 }
+#individual{
+    float:right;
+    height: 400px;
+    width: 1000px;
+    margin-right: 300px;
+    background-color: #bfbfbf;
+    border-radius: 2%;
+    padding-right: 10px;
+    
+    
+}
+#inner{
+    
+    float:right;
+    
+}
+#picframe{
+    
+    display:inline-block;
+    margin-top: 20px;
+    margin-left: 20px;
+    
+}

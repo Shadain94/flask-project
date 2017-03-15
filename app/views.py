@@ -69,9 +69,18 @@ def specific_profile(userid):
         single_user=[]
         single_user = [UserProfile.query.filter_by(userid=userid).first_or_404()]
         
+        images=[]
+        rootdir = os.getcwd()
+        for subdir, dirs, files in os.walk(rootdir + '/app/static/profile_pictures'):
+            for file in files:
+                images= images + [(os.path.join(file))]
         
+
+       
         
-    return render_template('show_user.html', single_person=single_user)
+    
+        
+    return render_template('show_user.html', single_person=single_user, single_image=images[random.randint(0,7)])
         
         
 
