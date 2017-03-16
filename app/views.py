@@ -57,11 +57,16 @@ def profile():
 @app.route("/profiles", methods=["GET", "POST"])
 def profiles():
     if request.method == "GET":
-        ppl_info= UserProfile.query.all()
+        ppl_info= [UserProfile.query.all()]
+        images=[]
+        rootdir=os.getcwd()
+        for subdir, dirs, files in os.walk(rootdir + '/app/static/profile_pictures'):
+            for file in files:
+                images= images + [(os.path.join(file))]
         
         
         
-    return render_template("profiles.html", person= ppl_info)
+    return render_template("profiles.html", person= ppl_info, photos=images[random.randint(0,7)])
     
 @app.route("/profile/<userid>", methods=["GET","POST"])
 def specific_profile(userid):

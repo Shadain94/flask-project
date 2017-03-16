@@ -12,10 +12,10 @@ body {
     
 }
 #individual{
-    float:right;
-    height: 400px;
-    width: 1000px;
-    margin-right: 300px;
+    float:none;
+    height: 650px;
+    width: 400px;
+    margin-right: 200px;
     background-color: #bfbfbf;
     border-radius: 2%;
     padding-right: 10px;
@@ -24,13 +24,16 @@ body {
 }
 #inner{
     
-    float:right;
+    display:inline-block;
+    margin-left: 20px;
+    margin-top: 20px;
     
 }
 #picframe{
     
-    display:inline-block;
+    
     margin-top: 20px;
     margin-left: 20px;
+    padding-top:20px;
     
 }
