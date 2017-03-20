@@ -15,6 +15,7 @@ from datetime import date
 import random
 from werkzeug.utils import secure_filename
 import os
+from sqlalchemy import text
 
 
 
@@ -37,6 +38,8 @@ def profile():
         image=request.files['file']
         filename = secure_filename(image.filename)
         image.save(os.path.join(file_folder, filename))
+        extension=list(image)[-1:-4]
+        print image
         lastname= request.form['l_name']
         username= request.form['u_name']
         userid= "6200"+str(random.randint(1,400))
@@ -45,7 +48,7 @@ def profile():
         gender=request.form['gender_types']
         now=date.today()
         
-        user= UserProfile(userid=userid,first_name=firstname, last_name=lastname, username=username, age=age, biography=bio, created_on= now.strftime('%d, %m , %Y'), gender=gender)
+        user= UserProfile(pic_ex=extension,userid=userid,first_name=firstname, last_name=lastname, username=username, age=age, biography=bio, created_on= now.strftime('%d, %m , %Y'), gender=gender)
         db.session.add(user)
         db.session.commit()
         flash('Your information has been saved to the Database')
@@ -57,7 +60,7 @@ def profile():
 @app.route("/profiles", methods=["GET", "POST"])
 def profiles():
     if request.method == "GET":
-        ppl_info= [UserProfile.query.all()]
+        ppl_info= UserProfile.query.all()
         images=[]
         rootdir=os.getcwd()
         for subdir, dirs, files in os.walk(rootdir + '/app/static/profile_pictures'):
@@ -66,26 +69,18 @@ def profiles():
         
         
         
-    return render_template("profiles.html", person= ppl_info, photos=images[random.randint(0,7)])
+    return render_template("profiles.html", person= ppl_info, photos=images)
     
 @app.route("/profile/<userid>", methods=["GET","POST"])
 def specific_profile(userid):
     if request.method=="GET":
-        single_user=[]
-        single_user = [UserProfile.query.filter_by(userid=userid).first_or_404()]
         
-        images=[]
-        rootdir = os.getcwd()
-        for subdir, dirs, files in os.walk(rootdir + '/app/static/profile_pictures'):
-            for file in files:
-                images= images + [(os.path.join(file))]
+        user = UserProfile.query.filter_by(userid=userid).first_or_404()
         
-
-       
         
     
         
-    return render_template('show_user.html', single_person=single_user, single_image=images[random.randint(0,7)])
+    return render_template('show_user.html', user=user)
         
         
 

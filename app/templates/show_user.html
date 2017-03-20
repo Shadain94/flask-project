@@ -2,34 +2,31 @@
 
 {% block main %}
 <h1 id=head>Single Profile</h1>
-
-{% for i in single_person %}
  <div id="individual">
      <div id=picframe>
-      <img src="{{url_for('static', filename='profile_pictures/'+single_image)}}" />
+      <img src="{{ url_for('static', filename='profile_pictures/' + user.first_name + '.jpg')}}" />
      
      </div>
   <div id="inner">
       
- <h2><b>{{i.first_name}}&nbsp{{i.last_name}}</b></h2>
- <p><b>Profile Created On:</b> {{i.created_on}} 
+ <h2><b>{{user.first_name}}&nbsp{{user.last_name}}</b></h2>
+ <p><b>Profile Created On:</b> {{user.created_on}} 
    <br>
-    <b>Username:</b> {{i.username}}
+    <b>Username:</b> {{user.username}}
     <br> 
-    <b>UserId:</b> {{i.userid}}
+    <b>Userid:</b> {{user.userid}}
     <br>
-    <b>Gender:</b> {{i.gender}}
+    <b>Gender:</b> {{user.gender}}
     <br>
-    <b> Age: </b>{{i.age}}
+    <b> Age: </b>{{user.age}}
     <br>
     <br>
-   <b> Biography:</b> {{i.biography}}
+   <b> Biography:</b> {{user.biography}}
     
  </p>
  </div>
  <div>
 
-{% endfor %}
 
 
 

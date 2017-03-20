@@ -4,9 +4,40 @@
 
 <h2>Available Profiles</h2>
 
+{% for user in  person %}
 
+ <div id="individual">
+     <div id=picframe>
+      <img src="{{ url_for('static', filename='profile_pictures/' + user.first_name + '.jpg')}}" />
+     
+     </div>
+  <div id="inner">
+      
+ <h2><b>{{user.first_name}}&nbsp{{user.last_name}}</b></h2>
+ <p><b>Profile Created On:</b> {{user.created_on}} 
+   <br>
+    <b>Username:</b> {{user.username}}
+    <br> 
+    <b>Userid:</b> {{user.userid}}
+    <br>
+    <b>Gender:</b> {{user.gender}}
+    <br>
+    <b> Age: </b>{{user.age}}
+    <br>
+    <br>
+   <b> Biography:</b> {{user.biography}}
     
+ </p>
+ </div>
+ <div>
+<br>
+<br>
+<br>
 
+{% endfor %}
+<br>
+<br>
+<br>
 
 
 
